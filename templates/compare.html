@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Property Comparison - Home Value AI</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* Header */
+
+        .header {
+            background: #1e3a8a;
+            color: white;
+            padding: 25px 50px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .header p {
+            margin-top: 8px;
+            margin-bottom: 0;
+            font-size: 16px;
+        }
+
+
+        /* Main Container */
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 35px auto;
+        }
+
+
+        /* Back Button */
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #64748b;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .back-btn:hover {
+            background: #475569;
+        }
+
+
+        /* Title */
+
+        .page-title {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .page-description {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+
+        /* Comparison Grid */
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+
+        /* Property Card */
+
+        .property-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .property-card h2 {
+            margin-top: 0;
+            color: #1e3a8a;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 15px;
+        }
+
+
+        /* Form */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+
+        /* Compare Button */
+
+        .button-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .compare-btn {
+            border: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .compare-btn:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* Responsive */
+
+        @media (max-width: 800px) {
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <h1>🏠 Home Value AI</h1>
+
+        <p>Property Comparison</p>
+
+    </div>
+
+
+    <!-- Main Content -->
+
+    <div class="container">
+
+
+        <!-- Back Button -->
+
+        <a href="/dashboard" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+
+        <!-- Page Title -->
+
+        <h1 class="page-title">
+            Compare Properties
+        </h1>
+
+        <p class="page-description">
+            Enter details of two properties to compare their estimated prices.
+        </p>
+
+
+        <!-- Comparison Form -->
+
+        <form action="/compare" method="POST">
+
+
+            <div class="comparison-grid">
+
+
+                <!-- PROPERTY 1 -->
+
+                <div class="property-card">
+
+                    <h2>
+                        🏠 Property 1
+                    </h2>
+
+
+                    <!-- Location -->
+
+                    <div class="form-group">
+
+                        <label for="location1">
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location1"
+                            name="location1"
+                            placeholder="Example: Mira Road"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Area -->
+
+                    <div class="form-group">
+
+                        <label for="area1">
+                            Area (sq ft)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="area1"
+                            name="area1"
+                            placeholder="Example: 1500"
+                            min="1"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Bedrooms -->
+
+                    <div class="form-group">
+
+                        <label for="bedrooms1">
+                            Number of Bedrooms
+                        </label>
+
+                        <input
+                            type="number"
+                            id="bedrooms1"
+                            name="bedrooms1"
+                            placeholder="Example: 3"
+                            min="1"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Property Type -->
+
+                    <div class="form-group">
+
+                        <label for="property_type1">
+                            Property Type
+                        </label>
+
+                        <select
+                            id="property_type1"
+                            name="property_type1"
+                            required
+                        >
+
+                            <option value="">
+                                -- Select Property Type --
+                            </option>
+
+                            <option value="Flat">
+                                Flat
+                            </option>
+
+                            <option value="House">
+                                House
+                            </option>
+
+                            <option value="Villa">
+                                Villa
+                            </option>
+
+                            <option value="Studio">
+                                Studio
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- PROPERTY 2 -->
+
+                <div class="property-card">
+
+                    <h2>
+                        🏡 Property 2
+                    </h2>
+
+
+                    <!-- Location -->
+
+                    <div class="form-group">
+
+                        <label for="location2">
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location2"
+                            name="location2"
+                            placeholder="Example: Delhi"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Area -->
+
+                    <div class="form-group">
+
+                        <label for="area2">
+                            Area (sq ft)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="area2"
+                            name="area2"
+                            placeholder="Example: 1500"
+                            min="1"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Bedrooms -->
+
+                    <div class="form-group">
+
+                        <label for="bedrooms2">
+                            Number of Bedrooms
+                        </label>
+
+                        <input
+                            type="number"
+                            id="bedrooms2"
+                            name="bedrooms2"
+                            placeholder="Example: 3"
+                            min="1"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Property Type -->
+
+                    <div class="form-group">
+
+                        <label for="property_type2">
+                            Property Type
+                        </label>
+
+                        <select
+                            id="property_type2"
+                            name="property_type2"
+                            required
+                        >
+
+                            <option value="">
+                                -- Select Property Type --
+                            </option>
+
+                            <option value="Flat">
+                                Flat
+                            </option>
+
+                            <option value="House">
+                                House
+                            </option>
+
+                            <option value="Villa">
+                                Villa
+                            </option>
+
+                            <option value="Studio">
+                                Studio
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Compare Button -->
+
+            <div class="button-section">
+
+                <button
+                    type="submit"
+                    class="compare-btn"
+                >
+                    🔍 Compare Properties
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Management - Home Value AI</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* Header */
+
+        .header {
+            background: #2563eb;
+            color: white;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .dashboard-btn {
+            background: white;
+            color: #2563eb;
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .dashboard-btn:hover {
+            background: #eaf1ff;
+        }
+
+        /* Main */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 50px auto;
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title-section h2 {
+            color: #1e3a8a;
+            font-size: 44px;
+            margin-bottom: 10px;
+        }
+
+        .title-section p {
+            color: #64748b;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        /* Table Card */
+
+        .table-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #2563eb;
+            color: white;
+        }
+
+        th {
+            padding: 20px;
+            text-align: left;
+            font-size: 22px;
+        }
+
+        td {
+            padding: 20px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 20px;
+        }
+
+        tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        /* Empty Message */
+
+        .empty-message {
+            text-align: center;
+            padding: 35px;
+            color: #64748b;
+            font-size: 20px;
+        }
+
+        /* Back Button */
+
+        .back-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 16px 35px;
+            border-radius: 10px;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 700px) {
+
+            .header {
+                padding: 20px;
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .container {
+                width: 95%;
+            }
+
+            .title-section h2 {
+                font-size: 32px;
+            }
+
+            .title-section p {
+                font-size: 18px;
+            }
+
+            .table-card {
+                padding: 20px;
+            }
+
+            th,
+            td {
+                font-size: 16px;
+                padding: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <h1>👥 User Management</h1>
+
+        <a href="/admin-dashboard" class="dashboard-btn">
+            ← Admin Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- Main Content -->
+
+    <div class="container">
+
+
+        <!-- Title -->
+
+        <div class="title-section">
+
+            <h2>
+                👥 Registered Users
+            </h2>
+
+            <p>
+                View users registered in the Home Value AI system.
+            </p>
+
+        </div>
+
+
+        <!-- User Table -->
+
+        <div class="table-card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            User ID
+                        </th>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            Email Address
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% if users %}
+
+                        {% for user in users %}
+
+                        <tr>
+
+                            <td>
+                                {{ user.id }}
+                            </td>
+
+                            <td>
+                                {{ user.name }}
+                            </td>
+
+                            <td>
+                                {{ user.email }}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <tr>
+
+                            <td colspan="3" class="empty-message">
+                                No registered users found.
+                            </td>
+
+                        </tr>
+
+                    {% endif %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- Back Button -->
+
+        <div class="back-section">
+
+            <a href="/admin-dashboard" class="back-btn">
+                ← Back to Admin Dashboard
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

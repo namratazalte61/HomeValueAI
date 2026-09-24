@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Predictions - Home Value AI</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: #2563eb;
+            color: white;
+
+            padding: 20px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .back-btn {
+            background: white;
+            color: #2563eb;
+
+            text-decoration: none;
+
+            padding: 12px 22px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: #e5edff;
+        }
+
+
+        /* MAIN */
+
+        .container {
+            width: 95%;
+            max-width: 1500px;
+
+            margin: 40px auto;
+        }
+
+
+        .page-title {
+            text-align: center;
+
+            color: #1e3a8a;
+
+            font-size: 38px;
+
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 19px;
+
+            margin-bottom: 35px;
+        }
+
+
+        /* TABLE CARD */
+
+        .table-box {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.08);
+
+            overflow-x: auto;
+        }
+
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 1150px;
+        }
+
+
+        th {
+            background: #2563eb;
+
+            color: white;
+
+            padding: 16px 12px;
+
+            text-align: center;
+
+            font-size: 16px;
+        }
+
+
+        td {
+            padding: 15px 12px;
+
+            text-align: center;
+
+            border-bottom: 1px solid #e2e8f0;
+
+            font-size: 15px;
+        }
+
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+
+        tr:hover {
+            background: #eef4ff;
+        }
+
+
+        .price {
+            color: #1e3a8a;
+
+            font-weight: bold;
+        }
+
+
+        /* EMPTY */
+
+        .empty-box {
+            text-align: center;
+
+            padding: 70px 20px;
+        }
+
+
+        .empty-icon {
+            font-size: 70px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .empty-box h2 {
+            color: #1e3a8a;
+
+            font-size: 30px;
+        }
+
+
+        .empty-box p {
+            color: #64748b;
+
+            font-size: 18px;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            .header {
+                padding: 18px 20px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .back-btn {
+                padding: 10px 14px;
+
+                font-size: 14px;
+            }
+
+            .page-title {
+                font-size: 30px;
+            }
+
+            .page-subtitle {
+                font-size: 16px;
+            }
+
+            .table-box {
+                padding: 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>
+            🔐 Home Value AI - Admin Panel
+        </h1>
+
+        <a
+            href="{{ url_for('admin_dashboard') }}"
+            class="back-btn"
+        >
+            ← Admin Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+
+        <h2 class="page-title">
+            📊 All Prediction History
+        </h2>
+
+
+        <p class="page-subtitle">
+            View all house price predictions made by users.
+        </p>
+
+
+        <div class="table-box">
+
+
+            {% if predictions %}
+
+
+            <table>
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            User ID
+                        </th>
+
+                        <th>
+                            Location
+                        </th>
+
+                        <th>
+                            Area
+                        </th>
+
+                        <th>
+                            Rooms
+                        </th>
+
+                        <th>
+                            Bedrooms
+                        </th>
+
+                        <th>
+                            Bathrooms
+                        </th>
+
+                        <th>
+                            Property Type
+                        </th>
+
+                        <th>
+                            Estimated Price
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    {% for prediction in predictions %}
+
+
+                    <tr>
+
+                        <td>
+                            {{ prediction.id }}
+                        </td>
+
+                        <td>
+                            {{ prediction.user_id }}
+                        </td>
+
+                        <td>
+                            {{ prediction.location }}
+                        </td>
+
+                        <td>
+                            {{ prediction.area }} sq ft
+                        </td>
+
+                        <td>
+                            {{ prediction.rooms }}
+                        </td>
+
+                        <td>
+                            {{ prediction.bedrooms }}
+                        </td>
+
+                        <td>
+                            {{ prediction.bathrooms }}
+                        </td>
+
+                        <td>
+                            {{ prediction.property_type }}
+                        </td>
+
+                        <td class="price">
+
+                            ₹ {{ "{:,.0f}".format(
+                                prediction.predicted_price
+                            ) }}
+
+                        </td>
+
+                    </tr>
+
+
+                    {% endfor %}
+
+
+                </tbody>
+
+
+            </table>
+
+
+            {% else %}
+
+
+            <div class="empty-box">
+
+                <div class="empty-icon">
+                    📭
+                </div>
+
+                <h2>
+                    No Prediction History
+                </h2>
+
+                <p>
+                    No users have made any predictions yet.
+                </p>
+
+            </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

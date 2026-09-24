@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Home Value AI</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        .header {
+            background: #2563eb;
+            color: white;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .logout-btn {
+            background: white;
+            color: #2563eb;
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: #e5edff;
+        }
+
+        .container {
+            width: 94%;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .welcome h2 {
+            color: #1e3a8a;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #64748b;
+            font-size: 22px;
+            margin: 0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 22px;
+            padding: 40px 25px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .stat-card h3 {
+            color: #475569;
+            font-size: 22px;
+            margin: 10px 0;
+        }
+
+        .stat-number {
+            color: #2563eb;
+            font-size: 45px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .management-title {
+            text-align: center;
+            color: #1e3a8a;
+            font-size: 34px;
+            margin-bottom: 30px;
+        }
+
+        .management {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .management-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .management-card .icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .management-card h3 {
+            color: #1e3a8a;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .management-card p {
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.5;
+        }
+
+        .management-btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .management-btn:hover {
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 900px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .management {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 18px 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .welcome h2 {
+                font-size: 32px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>
+            🔐 Home Value AI - Admin Panel
+        </h1>
+
+        <a
+            href="/admin-logout"
+            class="logout-btn"
+        >
+            Admin Logout
+        </a>
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+
+        <!-- WELCOME -->
+
+        <div class="welcome">
+
+            <h2>
+                👋 Welcome, Admin
+            </h2>
+
+            <p>
+                Manage and monitor the Home Value AI system.
+            </p>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats">
+
+
+            <!-- USERS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <h3>
+                    Registered Users
+                </h3>
+
+                <div class="stat-number">
+                    {{ total_users }}
+                </div>
+
+            </div>
+
+
+            <!-- FEEDBACK -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⭐
+                </div>
+
+                <h3>
+                    Total Feedback
+                </h3>
+
+                <div class="stat-number">
+                    {{ total_feedback }}
+                </div>
+
+            </div>
+
+
+            <!-- PREDICTIONS -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Total Predictions
+                </h3>
+
+                <div class="stat-number">
+                    {{ total_predictions }}
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- MANAGEMENT -->
+
+        <h2 class="management-title">
+            System Management
+        </h2>
+
+
+        <div class="management">
+
+
+            <!-- USER MANAGEMENT -->
+
+            <div class="management-card">
+
+                <div class="icon">
+                    👥
+                </div>
+
+                <h3>
+                    User Management
+                </h3>
+
+                <p>
+                    View all registered users and their account information.
+                </p>
+
+                <a
+                    href="{{ url_for('admin_users') }}"
+                    class="management-btn"
+                >
+                    👥 View Users
+                </a>
+
+            </div>
+
+
+            <!-- FEEDBACK MANAGEMENT -->
+
+            <div class="management-card">
+
+                <div class="icon">
+                    ⭐
+                </div>
+
+                <h3>
+                    Feedback Management
+                </h3>
+
+                <p>
+                    View feedback submitted by users of Home Value AI.
+                </p>
+
+                <a
+                    href="{{ url_for('admin_feedback') }}"
+                    class="management-btn"
+                >
+                    ⭐ View Feedback
+                </a>
+
+            </div>
+
+
+            <!-- PREDICTION MANAGEMENT -->
+
+            <div class="management-card">
+
+                <div class="icon">
+                    📊
+                </div>
+
+                <h3>
+                    Prediction History
+                </h3>
+
+                <p>
+                    View all house price predictions made by users.
+                </p>
+
+                <a
+                    href="{{ url_for('admin_predictions') }}"
+                    class="management-btn"
+                >
+                    📊 View Predictions
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

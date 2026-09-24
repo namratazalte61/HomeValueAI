@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result - Home Value AI</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+        }
+
+        .container {
+            width: 600px;
+            margin: 80px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #16a34a;
+            font-size: 30px;
+            margin: 25px 0;
+        }
+
+        .details {
+            text-align: left;
+            margin: 25px 0;
+            line-height: 2;
+            font-size: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 22px;
+            margin: 8px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: #64748b;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🏠 Home Value AI</h1>
+
+        <p>House Price Prediction Result</p>
+
+        <div class="details">
+
+            <strong>Location:</strong> {{ location }} <br>
+
+            <strong>Area:</strong> {{ area }} sq ft <br>
+
+            <strong>Rooms:</strong> {{ rooms }} <br>
+
+            <strong>Bedrooms:</strong> {{ bedrooms }} <br>
+
+            <strong>Bathrooms:</strong> {{ bathrooms }} <br>
+
+            <strong>Property Type:</strong> {{ property_type }}
+
+        </div>
+
+        <h2>{{ predicted_price }}</h2>
+
+        <p>Estimated House Price</p>
+
+        <!-- DOWNLOAD REPORT BUTTON -->
+
+        <a href="/download-report?location={{ location }}&area={{ area }}&bedrooms={{ bedrooms }}&property_type={{ property_type }}&price={{ predicted_price }}"
+           class="btn btn-primary">
+            📄 Download Prediction Report
+        </a>
+
+        <br>
+
+        <a href="/predict" class="btn btn-secondary">
+            Predict Another Property
+        </a>
+
+        <a href="/dashboard" class="btn btn-secondary">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Location Insights - Home Value AI</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* Header */
+
+        .header {
+            background: #1e3a8a;
+            color: white;
+            padding: 25px 50px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .header p {
+            margin-top: 8px;
+            margin-bottom: 0;
+            font-size: 16px;
+        }
+
+
+        /* Main Container */
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 35px auto;
+        }
+
+
+        /* Back Button */
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #64748b;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .back-btn:hover {
+            background: #475569;
+        }
+
+
+        /* Selection Card */
+
+        .selection-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .selection-card h2 {
+            margin-top: 0;
+            color: #1e3a8a;
+        }
+
+        .selection-card p {
+            color: #64748b;
+        }
+
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+        }
+
+        .search-btn {
+            margin-top: 18px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* Result Heading */
+
+        .result-heading {
+            color: #1e3a8a;
+            margin-bottom: 20px;
+        }
+
+
+        /* Result Cards */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .card-title {
+            color: #64748b;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .card-value {
+            color: #1e3a8a;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+
+        /* Location Banner */
+
+        .location-banner {
+            background: #dbeafe;
+            padding: 18px 22px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            color: #1e3a8a;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+
+        /* No Result */
+
+        .no-result {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            color: #64748b;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+
+        /* Responsive */
+
+        @media (max-width: 800px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <h1>📍 Home Value AI</h1>
+
+        <p>Location-Based Price Insights</p>
+
+    </div>
+
+
+    <!-- Main Content -->
+
+    <div class="container">
+
+
+        <!-- Back Button -->
+
+        <a href="/dashboard" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+
+        <!-- Location Selection -->
+
+        <div class="selection-card">
+
+            <h2>
+                🔎 Explore Location
+            </h2>
+
+            <p>
+                Select a location to view property and price information.
+            </p>
+
+
+            <form action="/location-insights" method="POST">
+
+                <label for="location">
+                    Select Location
+                </label>
+
+                <select name="location" id="location" required>
+
+                    <option value="">
+                        -- Select a Location --
+                    </option>
+
+                    {% for location in locations %}
+
+                        <option value="{{ location }}"
+                            {% if selected_location == location %}
+                                selected
+                            {% endif %}>
+
+                            {{ location }}
+
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <button type="submit" class="search-btn">
+                    View Location Insights
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- Results -->
+
+        {% if selected_location %}
+
+            <div class="location-banner">
+
+                📍 Location:
+                {{ selected_location }}
+
+            </div>
+
+
+            <h2 class="result-heading">
+                Market Information
+            </h2>
+
+
+            <div class="cards">
+
+
+                <!-- Properties -->
+
+                <div class="card">
+
+                    <div class="card-title">
+                        🏠 Properties Available
+                    </div>
+
+                    <div class="card-value">
+                        {{ location_properties }}
+                    </div>
+
+                </div>
+
+
+                <!-- Average Price -->
+
+                <div class="card">
+
+                    <div class="card-title">
+                        💰 Average House Price
+                    </div>
+
+                    <div class="card-value">
+                        {{ location_average_price }}
+                    </div>
+
+                </div>
+
+
+                <!-- Price Per Sq Ft -->
+
+                <div class="card">
+
+                    <div class="card-title">
+                        📐 Average Price / Sq Ft
+                    </div>
+
+                    <div class="card-value">
+                        {{ location_average_price_per_sqft }}
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        {% else %}
+
+
+            <div class="no-result">
+
+                <h2>
+                    📊 Location Insights
+                </h2>
+
+                <p>
+                    Select a location above to view its market information.
+                </p>
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Home Value AI - Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f7fc;
+            color: #555;
+        }
+
+        .navbar {
+            background: #2864e8;
+            color: white;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 34px;
+            font-weight: bold;
+        }
+
+        .logout {
+            background: white;
+            color: #2864e8;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .welcome {
+            text-align: center;
+            padding: 40px 20px 30px;
+        }
+
+        .welcome h1 {
+            margin: 0;
+            color: #214694;
+            font-size: 38px;
+        }
+
+        .welcome p {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        .cards {
+            width: 94%;
+            max-width: 1300px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 25px;
+            padding: 45px 30px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .icon {
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            color: #214694;
+            font-size: 29px;
+            margin: 15px 0;
+        }
+
+        .card p {
+            font-size: 21px;
+            line-height: 1.5;
+            min-height: 80px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2864e8;
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 21px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background: #174dcc;
+        }
+
+        .full-card {
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .full-card {
+                grid-column: auto;
+            }
+
+            .navbar {
+                padding: 15px;
+            }
+
+            .logo {
+                font-size: 25px;
+            }
+
+            .logout {
+                font-size: 16px;
+                padding: 10px 18px;
+            }
+
+            .welcome h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+
+        <div class="logo">
+            🏠 Home Value AI
+        </div>
+
+        <a href="{{ url_for('logout') }}" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+
+    <!-- WELCOME -->
+    <div class="welcome">
+
+        <h1>
+            👤 Welcome, {{ user_name }}
+        </h1>
+
+        <p>
+            Smart House Price Prediction and Analytics System
+        </p>
+
+    </div>
+
+
+    <!-- DASHBOARD CARDS -->
+    <div class="cards">
+
+
+        <!-- HOUSE PRICE PREDICTION -->
+        <div class="card">
+
+            <div class="icon">
+                🏠
+            </div>
+
+            <h2>
+                House Price Prediction
+            </h2>
+
+            <p>
+                Enter property details and get an
+                estimated house price using
+                Machine Learning.
+            </p>
+
+            <a href="{{ url_for('predict') }}" class="btn">
+                Predict Price
+            </a>
+
+        </div>
+
+
+        <!-- MARKET ANALYTICS -->
+        <div class="card">
+
+            <div class="icon">
+                📊
+            </div>
+
+            <h2>
+                Market Analytics
+            </h2>
+
+            <p>
+                Explore property statistics,
+                average prices and property type
+                distribution.
+            </p>
+
+            <a href="{{ url_for('analytics') }}" class="btn">
+                View Analytics
+            </a>
+
+        </div>
+
+
+        <!-- LOCATION INSIGHTS -->
+        <div class="card">
+
+            <div class="icon">
+                📍
+            </div>
+
+            <h2>
+                Location Insights
+            </h2>
+
+            <p>
+                Explore property prices and
+                market information for different
+                locations.
+            </p>
+
+            <a href="{{ url_for('location_insights') }}" class="btn">
+                Explore
+            </a>
+
+        </div>
+
+
+        <!-- PROPERTY COMPARISON -->
+        <div class="card">
+
+            <div class="icon">
+                ⚖️
+            </div>
+
+            <h2>
+                Property Comparison
+            </h2>
+
+            <p>
+                Compare two properties based on
+                their details and estimated prices.
+            </p>
+
+            <a href="{{ url_for('compare') }}" class="btn">
+                Compare
+            </a>
+
+        </div>
+
+
+        <!-- PREDICTION HISTORY -->
+        <div class="card">
+
+            <div class="icon">
+                📜
+            </div>
+
+            <h2>
+                Prediction History
+            </h2>
+
+            <p>
+                View your previous house price
+                predictions and property details.
+            </p>
+
+            <a href="{{ url_for('prediction_history') }}" class="btn">
+                View History
+            </a>
+
+        </div>
+
+
+        <!-- FEEDBACK -->
+        <div class="card">
+
+            <div class="icon">
+                ⭐
+            </div>
+
+            <h2>
+                Feedback
+            </h2>
+
+            <p>
+                Share your experience and help us
+                improve the Home Value AI system.
+            </p>
+
+            <a href="{{ url_for('feedback') }}" class="btn">
+                Give Feedback
+            </a>
+
+        </div>
+
+
+    </div>
+
+</body>
+</html>
